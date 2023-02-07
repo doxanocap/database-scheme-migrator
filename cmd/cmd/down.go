@@ -23,8 +23,8 @@ func init() {
 func MigrateDownAllSchemas(cmd *cobra.Command, args []string) {
 	res := migrator.SelectAll()
 	for _, m := range res {
-		_, down := services.GetFileName(m.Name, m.Id)
-		content, err := os.ReadFile(migrator.SchemasPath + "\\" + down)
+		fn := services.GetFileName(m.Name, m.Id)
+		content, err := os.ReadFile(migrator.SchemasPath + "\\" + fn + "down.sql")
 		if err != nil {
 			log.Println(err)
 		}

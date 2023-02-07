@@ -1,5 +1,3 @@
 DROP TABLE users;
-
 DROP TABLE tokens;
-
-DROP TABLE users_api;
+DROP TABLE user_api;
