@@ -8,3 +8,5 @@ up:
 	go run cmd/main.go up
 down:
 	go run cmd/main.go down
+dbversion:
+	go run cmd/main.go dbversion

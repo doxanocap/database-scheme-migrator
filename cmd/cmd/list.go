@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"github.com/spf13/cobra"
 	"gomigrate/internal/connection"
-	"gomigrate/internal/migrator"
+	"gomigrate/internal/models"
 )
 
 var listCmd = &cobra.Command{
@@ -19,7 +19,7 @@ func init() {
 }
 
 func ListAllMigrations(cmd *cobra.Command, args []string) {
-	res := migrator.SelectAll()
+	res := models.SelectAll()
 	fmt.Println("_____________________________________________________________________")
 	for _, m := range res {
 		fmt.Printf("%d  | Name: %s  -> Version: %d -> Created At: %d \n", m.Id, m.Name, m.Version, m.CreatedAt)

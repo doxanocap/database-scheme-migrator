@@ -2,10 +2,11 @@ CREATE TABLE gomigrate_migrators (
     id SERIAL PRIMARY KEY,
     Name VARCHAR(255) NOT NULL,
     Version INT NOT NULL DEFAULT 1,
-    CreatedAt BIGINT NOT NULL
+    CreatedAt BIGINT NOT NULL,
+    ChangedAt BIGINT NOT NULL
 );
 
-CREATE TABLE gomigrate_migrator_stash (
+CREATE TABLE gomigrate_migrators_stash (
     id SERIAL PRIMARY KEY,
     Name VARCHAR(255) NOT NULL,
     Version INT NOT NULL,
@@ -13,5 +14,3 @@ CREATE TABLE gomigrate_migrator_stash (
     downFileBody TEXT,
     ChangedAt BIGINT NOT NULL
 );
-
-INSERT INTO gomigrate_migrators (Name, CreatedAt) VALUES ('%s', '%s') RETURNING *;

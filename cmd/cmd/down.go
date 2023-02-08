@@ -1,12 +1,8 @@
 package cmd
 
 import (
-	"gomigrate/internal/migrator"
-	"gomigrate/internal/services"
-	"log"
-	"os"
-
 	"github.com/spf13/cobra"
+	"gomigrate/internal/services"
 )
 
 var downCmd = &cobra.Command{
@@ -21,14 +17,5 @@ func init() {
 }
 
 func MigrateDownAllSchemas(cmd *cobra.Command, args []string) {
-	res := migrator.SelectAll()
-	for _, m := range res {
-		fn := services.GetFileName(m.Name, m.Id)
-		content, err := os.ReadFile(migrator.SchemasPath + "\\" + fn + "down.sql")
-		if err != nil {
-			log.Println(err)
-		}
-		migrator.ExecuteQuery(string(content))
-		migrator.UpdateVersionById(m.Id, m.Version+1)
-	}
+	services.MigrateDownAllSchemas()
 }
